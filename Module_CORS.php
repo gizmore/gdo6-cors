@@ -1,12 +1,12 @@
 <?php
 namespace GDO\CORS;
-use GDO\Core\Module;
+use GDO\Core\GDO_Module;
 use GDO\Core\Application;
 /**
  * Add CORS headers on non cli requests.
  * @author gizmore
  */
-final class Module_CORS extends Module
+final class Module_CORS extends GDO_Module
 {
     public function onInit()
     {
