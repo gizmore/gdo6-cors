@@ -11,7 +11,7 @@ final class Module_CORS extends GDO_Module
 	public function onInit()
 	{
 		$app = Application::instance();
-		if  ( (!$app->isCLI()) ) #&& ($app->isAjax()) )
+		if  (!$app->isCLI())
 		{
 			header("Access-Control-Allow-Origin: ".$_SERVER['SERVER_NAME']);
 			header("Access-Control-Allow-Credentials: true");
