@@ -28,8 +28,8 @@ final class Module_CORS extends GDO_Module
 		$app = Application::instance();
 		if (!$app->isCLI())
 		{
-			header("Access-Control-Allow-Origin: " . $this->getOrigin());
-			header("Access-Control-Allow-Credentials: true");
+			@header("Access-Control-Allow-Origin: " . $this->getOrigin());
+			@header("Access-Control-Allow-Credentials: true");
 		}
 	}
 	
@@ -54,6 +54,6 @@ final class Module_CORS extends GDO_Module
 				return $cors;
 			}
 		}
-		return $_SERVER['SERVER_NAME'];
+		return @$_SERVER['SERVER_NAME'];
 	}
 }
