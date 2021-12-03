@@ -10,7 +10,7 @@ use GDO\Util\Common;
  * Optional: Allow any origin. will try a lot of possible working values from request. If cors is set in request vars you can force it.
  * Default to SERVER_NAME.
  * @author gizmore
- * @version 6.10.1
+ * @version 6.11.0
  * @since 6.7.0
  */
 final class Module_CORS extends GDO_Module
@@ -47,6 +47,9 @@ final class Module_CORS extends GDO_Module
 		{
 		    hdr("Access-Control-Allow-Credentials: true");
 		}
+		
+		hdr('Access-Control-Allow-Headers: Content-Type');
+		hdr('Access-Control-Allow-Methods: GET, POST, OPTIONS');
 	}
 	
 	private function getOrigin()
