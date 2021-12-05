@@ -48,7 +48,7 @@ final class Module_CORS extends GDO_Module
 		    hdr("Access-Control-Allow-Credentials: true");
 		}
 		
-		hdr('Access-Control-Allow-Headers: Content-Type');
+		hdr('Access-Control-Allow-Headers: Content-Type, Authorization');
 		hdr('Access-Control-Allow-Methods: GET, POST, OPTIONS');
 	}
 	
