@@ -9,8 +9,9 @@ use GDO\Util\Common;
  * Add CORS headers on non cli requests.
  * Optional: Allow any origin. will try a lot of possible working values from request. If cors is set in request vars you can force it.
  * Default to SERVER_NAME.
+ * 
  * @author gizmore
- * @version 6.11.1
+ * @version 6.11.3
  * @since 6.7.0
  */
 final class Module_CORS extends GDO_Module
@@ -37,20 +38,29 @@ final class Module_CORS extends GDO_Module
 	############
 	### Init ###
 	############
+	public function onIncludeScripts()
+	{
+		$this->addJS('js/gdo6-cors.js');
+	}
+	
 	public function onInit()
 	{
-	    # Origin
-		hdr("Access-Control-Allow-Origin: " . $this->getOrigin());
-		
-		# Credentials
-		if ($this->cfgAllowCredentials())
-		{
-		    hdr("Access-Control-Allow-Credentials: true");
-		}
-		
-		hdr('Access-Control-Allow-Headers: Content-Type, Authorization, Cookie');
-		hdr('Access-Control-Allow-Methods: GET, POST, OPTIONS');
-		hdr('Access-Control-Expose-Headers: Set-Cookie');
+// 		if (@$_SERVER['REQUEST_METHOD'] === 'OPTIONS')
+// 		{
+		    # Origin
+			hdr("Access-Control-Allow-Origin: " . $this->getOrigin());
+			
+			# Credentials
+			if ($this->cfgAllowCredentials())
+			{
+			    hdr("Access-Control-Allow-Credentials: true");
+			}
+
+			# Options
+			hdr('Access-Control-Allow-Headers: Content-Type, Authorization, Cookie, Accept, x-csrf-token, Sec-Fetch-Mode, Sec-Fetch-Site, Sec-Fetch-Dest');
+			hdr('Access-Control-Allow-Methods: GET, POST, OPTIONS');
+			hdr('Access-Control-Expose-Headers: Set-Cookie');
+// 		}
 	}
 	
 	private function getOrigin()
